@@ -1,81 +1,160 @@
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-import '../../../res/constants.dart';
+import 'package:flutter_portfolio/view%20model/controller.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../view model/responsive.dart';
-import 'animated_texts_componenets.dart';
-import 'combine_subtitle.dart';
-import 'description_text.dart';
-import 'download_button.dart';
-import 'headline_text.dart';
+
 class IntroBody extends StatelessWidget {
   const IntroBody({super.key});
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
-    return Row(
-      children: [
-        Expanded(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Safe space for floating navigation bar
+            SizedBox(height: size.height * 0.12),
+
+            // PRINCE (First Line)
+            Text(
+              'PRINCE',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: Responsive.isDesktop(context)
+                    ? 55
+                    : Responsive.isTablet(context)
+                        ? 45
+                        : 36,
+                fontWeight: FontWeight.w300,
+                letterSpacing: 2,
+                height: 1.0,
+              ),
+            ),
+
+            // HIRPARA (Second Line)
+            Text(
+              'HIRPARA',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: Responsive.isDesktop(context)
+                    ? 75
+                    : Responsive.isTablet(context)
+                        ? 60
+                        : 48,
+                fontWeight: FontWeight.w900,
+                height: 1.0,
+              ),
+            ),
+
+            const SizedBox(height: 12),
+
+            // Subtitle Role
+            Text(
+              'FLUTTER & ANDROID DEVELOPER',
+              style: TextStyle(
+                color: Colors.white70,
+                fontSize: Responsive.isDesktop(context)
+                    ? 15
+                    : Responsive.isTablet(context)
+                        ? 13
+                        : 11,
+                fontWeight: FontWeight.w400,
+                letterSpacing: Responsive.isDesktop(context)
+                    ? 6.0
+                    : Responsive.isTablet(context)
+                        ? 5.0
+                        : 4.0,
+              ),
+            ),
+
+            SizedBox(height: size.height * 0.06),
+
+            // Two side-by-side capsule buttons
+            Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                if (!Responsive.isDesktop(context))
-                  SizedBox(
-                    height: size.height * 0.06,
+                OutlinedHoverButton(
+                  text: 'Resume',
+                  onTap: () => launchUrl(
+                    Uri.parse(
+                      'https://drive.google.com/file/d/1HSIe7rdk8VtrAL4DQuybfMHQgDrQ6xNs/view?usp=sharing',
+                    ),
                   ),
-                if (!Responsive.isDesktop(context))
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: size.width * 0.23,
-                      ),
-                      const AnimatedImageContainer(
-                        width: 150,
-                        height: 200,
-                      ),
-                    ],
-                  ),
-                if (!Responsive.isDesktop(context))
-                  SizedBox(
-                    height: size.height * 0.1,
-                  ),
-                const Responsive(
-                    desktop: MyPortfolioText(start: 40, end: 50),
-                    largeMobile: MyPortfolioText(start: 40, end: 35),
-                    mobile: MyPortfolioText(start: 35, end: 30),
-                    tablet: MyPortfolioText(start: 50, end: 40)),
-                if (kIsWeb && Responsive.isLargeMobile(context))
-                  Container(
-                    height: defaultPadding,
-                    color: Colors.transparent,
-                  ),
-                const CombineSubtitleText(),
-                const SizedBox(height: defaultPadding / 2),
-                const Responsive(
-                  desktop: AnimatedDescriptionText(start: 14, end: 15),
-                  largeMobile: AnimatedDescriptionText(start: 14, end: 12),
-                  mobile: AnimatedDescriptionText(start: 14, end: 12),
-                  tablet: AnimatedDescriptionText(start: 17, end: 14),
                 ),
-                const SizedBox(
-                  height: defaultPadding * 2,
+                const SizedBox(width: 20),
+                OutlinedHoverButton(
+                  text: 'Projects',
+                  onTap: () {
+                    controller.animateToPage(
+                      2,
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.easeIn,
+                    );
+                  },
                 ),
-                const DownloadButton(),
               ],
+            ),
+
+            // Bottom padding to ensure nice layout spacing
+            const SizedBox(height: 40),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class OutlinedHoverButton extends StatefulWidget {
+  final String text;
+  final VoidCallback onTap;
+
+  const OutlinedHoverButton({
+    super.key,
+    required this.text,
+    required this.onTap,
+  });
+
+  @override
+  State<OutlinedHoverButton> createState() => _OutlinedHoverButtonState();
+}
+
+class _OutlinedHoverButtonState extends State<OutlinedHoverButton> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          padding: EdgeInsets.symmetric(
+            horizontal: Responsive.isDesktop(context) ? 32 : 24,
+            vertical: Responsive.isDesktop(context) ? 14 : 10,
+          ),
+          decoration: BoxDecoration(
+            color: _isHovered ? Colors.white : Colors.transparent,
+            borderRadius: BorderRadius.circular(30),
+            border: Border.all(color: Colors.white, width: 1.5),
+          ),
+          child: Text(
+            widget.text,
+            style: TextStyle(
+              color: _isHovered ? const Color(0xFF191923) : Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: Responsive.isDesktop(context) ? 14 : 12,
+              letterSpacing: 1.0,
             ),
           ),
         ),
-        // const Spacer(),
-        SizedBox(
-          width: size.width * 0.06,
-        ),
-        if (Responsive.isDesktop(context)) const AnimatedImageContainer(),
-        // const Spacer()
-        SizedBox(
-          width: size.width * 0.06,
-        ),
-      ],
+      ),
     );
   }
 }

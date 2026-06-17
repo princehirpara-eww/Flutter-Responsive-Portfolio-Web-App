@@ -16,13 +16,13 @@ class Certifications extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if(Responsive.isLargeMobile(context))const SizedBox(
+          if(Responsive.isLargeMobile(context)) const SizedBox(
             height: defaultPadding,
           ),
           const TitleText(prefix: 'Certifications & ', title: 'License'),
-          const SizedBox(
+          /*const SizedBox(
             height: defaultPadding,
-          ),
+          ),*/
           Expanded(
               child: Responsive(
                   desktop: CertificateGrid(crossAxisCount: 3,ratio: 1.5,),

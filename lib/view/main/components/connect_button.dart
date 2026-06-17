@@ -55,8 +55,12 @@ class _ConnectButtonState extends State<ConnectButton> {
               transform: Matrix4.identity()
                 ..translate(0.0, translateY)
                 ..scale(scale),
-            height: 60,
-            width: 150,
+            // height: 60,
+            // width: 150,
+              padding: EdgeInsetsDirectional.symmetric(
+                vertical: 10,
+                horizontal: 20
+              ),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(defaultPadding),
                 gradient: LinearGradient(colors: [
@@ -90,7 +94,7 @@ class _ConnectButtonState extends State<ConnectButton> {
                     duration: Duration(milliseconds: animationDuration),
                     turns: isHovered ? 0.10 : 0,
                     child: const FaIcon(FontAwesomeIcons.whatsapp,color: Colors.white,size: 15,)),
-                const SizedBox(width : defaultPadding/4),
+                const SizedBox(width : 5),
                 Text('Whatsapp',style: Theme.of(context).textTheme.labelSmall!.copyWith(
                     color: Colors.white,
                     letterSpacing: 1.2,

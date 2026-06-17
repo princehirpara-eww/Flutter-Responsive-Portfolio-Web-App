@@ -1,38 +1,74 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/view%20model/controller.dart';
-import 'package:flutter_portfolio/res/constants.dart';
 import 'package:flutter_portfolio/view/main/components/navigation_bar.dart';
 import '../../view model/responsive.dart';
-import 'components/drawer/drawer.dart';
 import 'components/navigation_button_list.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
-class MainView extends StatelessWidget {
-   const MainView({super.key, required this.pages});
+class MainView extends StatefulWidget {
+  const MainView({super.key, required this.pages});
   final List<Widget> pages;
+
+  @override
+  State<MainView> createState() => _MainViewState();
+}
+
+class _MainViewState extends State<MainView> {
+  int _currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    controller.addListener(_pageListener);
+  }
+
+  @override
+  void dispose() {
+    controller.removeListener(_pageListener);
+    super.dispose();
+  }
+
+  void _pageListener() {
+    if (controller.hasClients) {
+      final page = controller.page?.round() ?? 0;
+      if (page != _currentPage) {
+        setState(() {
+          _currentPage = page;
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const CustomDrawer(),
+      // drawer: const CustomDrawer(),
       body: Center(
-        child: Column(
+        child: Stack(
           children: [
-            // kIsWeb && !Responsive.isLargeMobile(context) ? const SizedBox(height:defaultPadding*2,) : const SizedBox(height:defaultPadding/2,),
-             const SizedBox(
-                height: 80,
-                child: TopNavigationBar(),
+            PageView(
+              scrollDirection: Axis.vertical,
+              physics: const AlwaysScrollableScrollPhysics(),
+              controller: controller,
+              children: widget.pages,
             ),
-            if(Responsive.isLargeMobile(context))  const Row(children: [Spacer(),NavigationButtonList(),Spacer()],),
-            Expanded(
-                flex: 9,
-                child: PageView(
-                  scrollDirection: Axis.vertical,
-                  physics: const NeverScrollableScrollPhysics(),
-                  controller: controller,
-                  children: [
-                    ...pages
-                  ],
-                ),
-            )
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TopNavigationBar(activeIndex: _currentPage),
+                  if (Responsive.isLargeMobile(context))
+                    Row(
+                      children: [
+                        const Spacer(),
+                        NavigationButtonList(activeIndex: _currentPage),
+                        const Spacer(),
+                      ],
+                    ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
