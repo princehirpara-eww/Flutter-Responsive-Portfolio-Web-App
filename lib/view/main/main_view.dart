@@ -46,7 +46,7 @@ class _MainViewState extends State<MainView> {
           children: [
             PageView(
               scrollDirection: Axis.vertical,
-              physics: const AlwaysScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               controller: controller,
               children: widget.pages,
             ),
@@ -58,14 +58,14 @@ class _MainViewState extends State<MainView> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   TopNavigationBar(activeIndex: _currentPage),
-                  if (Responsive.isLargeMobile(context))
-                    Row(
-                      children: [
-                        const Spacer(),
-                        NavigationButtonList(activeIndex: _currentPage),
-                        const Spacer(),
-                      ],
-                    ),
+                  // if (Responsive.isLargeMobile(context))
+                  //   Row(
+                  //     children: [
+                  //       const Spacer(),
+                  //       NavigationButtonList(activeIndex: _currentPage),
+                  //       const Spacer(),
+                  //     ],
+                  //   ),
                 ],
               ),
             ),

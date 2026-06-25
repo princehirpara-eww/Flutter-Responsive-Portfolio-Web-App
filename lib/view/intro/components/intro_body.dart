@@ -79,18 +79,20 @@ class IntroBody extends StatelessWidget {
               children: [
                 OutlinedHoverButton(
                   text: 'Resume',
-                  onTap: () => launchUrl(
-                    Uri.parse(
-                      'https://drive.google.com/file/d/1HSIe7rdk8VtrAL4DQuybfMHQgDrQ6xNs/view?usp=sharing',
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 20),
-                OutlinedHoverButton(
-                  text: 'Projects',
                   onTap: () {
                     controller.animateToPage(
                       2,
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.easeIn,
+                    );
+                  },
+                ),
+                const SizedBox(width: 20),
+                OutlinedHoverButton(
+                  text: 'Portfolio',
+                  onTap: () {
+                    controller.animateToPage(
+                      3,
                       duration: const Duration(milliseconds: 500),
                       curve: Curves.easeIn,
                     );

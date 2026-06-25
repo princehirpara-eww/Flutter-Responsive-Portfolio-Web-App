@@ -11,16 +11,18 @@ class TopNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.sizeOf(context);
+
     return Container(
-      color: Colors.transparent,
-      padding: const EdgeInsets.symmetric(
-        horizontal: defaultPadding * 2,
-        vertical: defaultPadding,
+      color: Colors.black,
+      padding: EdgeInsets.symmetric(
+        horizontal: size.width * 0.02,
+        vertical: size.height * 0.02,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          if (Responsive.isLargeMobile(context))
+          /*if (Responsive.isLargeMobile(context))
             MenuButton(onTap: () => Scaffold.of(context).openDrawer())
           else
             NavigationButtonList(activeIndex: activeIndex),
@@ -49,7 +51,9 @@ class TopNavigationBar extends StatelessWidget {
                 ],
               ),
             ),
-          ),
+          ),*/
+
+          NavigationButtonList(activeIndex: activeIndex),
         ],
       ),
     );

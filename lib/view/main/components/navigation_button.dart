@@ -16,14 +16,33 @@ class NavigationTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
+    var size = MediaQuery.sizeOf(context);
+    /*return TextButton(
       onPressed: onTap,
       child: Text(
         text,
         style: Theme.of(context).textTheme.labelMedium!.copyWith(
+          fontSize: size.height * 0.019,
               fontWeight: FontWeight.bold,
               color: isActive ? flutterBlue : Colors.white,
             ),
+      ),
+    );*/
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: EdgeInsetsDirectional.symmetric(
+          horizontal: size.height * 0.02,
+          vertical: size.height * 0.01
+        ),
+        child: Text(
+          text,
+          style: Theme.of(context).textTheme.labelMedium!.copyWith(
+            fontSize: size.height * 0.02,
+            fontWeight: FontWeight.bold,
+            color: isActive ? flutterBlue : Colors.white,
+          ),
+        ),
       ),
     );
   }
