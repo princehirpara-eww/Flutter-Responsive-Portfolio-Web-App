@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import '../../../model/project_model.dart';
 import '../../../res/constants.dart';
 import '../../../view model/getx_controllers/projects_controller.dart';
+import '../../../view model/responsive.dart';
+
 class ProjectGrid extends StatelessWidget {
   final int crossAxisCount;
   final double ratio;
@@ -12,9 +14,13 @@ class ProjectGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      padding: EdgeInsets.symmetric(
+        horizontal: Responsive.isLargeMobile(context) ? 0.0 : 15.0,
+      ),
       itemCount: projectList.length,
-      gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: crossAxisCount, childAspectRatio: ratio),
       itemBuilder: (context, index) {
         return Obx(() => AnimatedContainer(
