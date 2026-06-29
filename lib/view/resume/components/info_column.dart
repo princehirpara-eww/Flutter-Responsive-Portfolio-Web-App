@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/core/theme/app_colors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../res/constants.dart';
 
@@ -57,7 +58,7 @@ class InfoColumn extends StatelessWidget {
         Text(
           title,
           style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                color: Colors.white,
+                color: AppColors.white,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 1.5,
               ),
@@ -66,7 +67,7 @@ class InfoColumn extends StatelessWidget {
         Container(
           width: 40,
           height: 2.5,
-          color: flutterBlue,
+          color: AppColors.flutterBlue,
         ),
       ],
     );
@@ -81,7 +82,7 @@ class InfoColumn extends StatelessWidget {
           Text(
             text,
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  color: Colors.white.withOpacity(0.9),
+                  color: AppColors.white.withOpacity(0.9),
                   fontWeight: FontWeight.w500,
                   letterSpacing: 1.0,
                 ),
@@ -107,7 +108,7 @@ class InfoColumn extends StatelessWidget {
             child: FaIcon(
               FontAwesomeIcons.circleCheck,
               size: 13,
-              color: flutterBlue,
+              color: AppColors.flutterBlue,
             ),
           ),
           const SizedBox(width: 12),
@@ -135,7 +136,7 @@ class InfoColumn extends StatelessWidget {
             height: 46,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: darkColor,
+              color: AppColors.darkSurface,
               shape: BoxShape.circle,
               border: Border.all(color: Colors.white24, width: 1.5),
               boxShadow: [

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/core/theme/app_colors.dart';
 
 class MyPortfolioText extends StatelessWidget {
   const MyPortfolioText({super.key, required this.start, required this.end});
@@ -13,7 +14,7 @@ class MyPortfolioText extends StatelessWidget {
         builder: (context, value, child) {
           return Text('Prince Hirpara\'s Portfolio',
               style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                  color: Colors.white,
+                  color: AppColors.white,
                   fontWeight: FontWeight.w900,
                   height: 0,
                   fontSize: value));

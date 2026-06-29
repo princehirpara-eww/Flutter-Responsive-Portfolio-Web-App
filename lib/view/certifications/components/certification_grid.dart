@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../core/theme/app_colors.dart';
 import '../../../model/certificate_model.dart';
 import '../../../res/constants.dart';
 import '../../../view model/getx_controllers/certification_controller.dart';
@@ -23,18 +24,18 @@ class CertificateGrid extends StatelessWidget {
                 vertical: defaultPadding, horizontal: defaultPadding),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
-                gradient: const LinearGradient(colors: [
-                  androidGreen,
-                  flutterBlue,
+                gradient: LinearGradient(colors: [
+                  AppColors.androidGreen,
+                  AppColors.flutterBlue,
                 ]),
                 boxShadow:  [
                   BoxShadow(
-                    color: androidGreen,
+                    color: AppColors.androidGreen,
                     offset: const Offset(-2, 0),
                     blurRadius: controller.hovers[index] ? 20 : 10,
                   ),
                   BoxShadow(
-                    color: flutterBlue,
+                    color: AppColors.flutterBlue,
                     offset: const Offset(2, 0),
                     blurRadius: controller.hovers[index] ? 20 : 10,),
                 ]),

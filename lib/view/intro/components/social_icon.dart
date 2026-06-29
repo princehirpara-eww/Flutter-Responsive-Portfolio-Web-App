@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../core/theme/app_colors.dart';
 import '../../../res/constants.dart';
 
 class SocialMediaIcon extends StatelessWidget {
@@ -14,7 +15,7 @@ class SocialMediaIcon extends StatelessWidget {
       borderRadius: BorderRadius.circular(20),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: defaultPadding * 0.4),
-        child: SvgPicture.asset(icon,color: Colors.white,height: 15,width: 15,),
+        child: SvgPicture.asset(icon,color: AppColors.white,height: 15,width: 15,),
       ),
     );
   }

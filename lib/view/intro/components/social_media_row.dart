@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../core/theme/app_colors.dart';
+
 class SocialMediaRow extends StatelessWidget {
   const SocialMediaRow({super.key});
 
@@ -90,7 +92,7 @@ class _SocialIconState extends State<_SocialIcon> {
             duration: const Duration(milliseconds: 150),
             child: FaIcon(
               widget.icon,
-              color: Colors.white,
+              color: AppColors.white,
               size: 20,
             ),
           ),

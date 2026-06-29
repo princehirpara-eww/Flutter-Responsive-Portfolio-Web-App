@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/core/theme/text_styles.dart';
+import 'package:flutter_portfolio/gen/fonts.gen.dart';
 import 'package:flutter_portfolio/view%20model/controller.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../../core/theme/app_colors.dart';
 import '../../../view model/responsive.dart';
 
 class IntroBody extends StatelessWidget {
@@ -22,15 +25,13 @@ class IntroBody extends StatelessWidget {
             // PRINCE (First Line)
             Text(
               'PRINCE',
-              style: TextStyle(
-                color: Colors.white,
+              style: TextStyles.text54Bold.copyWith(
+                color: AppColors.white,
                 fontSize: Responsive.isDesktop(context)
-                    ? 55
+                    ? 54
                     : Responsive.isTablet(context)
                         ? 45
                         : 36,
-                fontWeight: FontWeight.w300,
-                letterSpacing: 2,
                 height: 1.0,
               ),
             ),
@@ -38,14 +39,13 @@ class IntroBody extends StatelessWidget {
             // HIRPARA (Second Line)
             Text(
               'HIRPARA',
-              style: TextStyle(
-                color: Colors.white,
+              style: TextStyles.text74ExtraBold.copyWith(
+                color: AppColors.white,
                 fontSize: Responsive.isDesktop(context)
-                    ? 75
+                    ? 74
                     : Responsive.isTablet(context)
                         ? 60
                         : 48,
-                fontWeight: FontWeight.w900,
                 height: 1.0,
               ),
             ),
@@ -55,14 +55,13 @@ class IntroBody extends StatelessWidget {
             // Subtitle Role
             Text(
               'FLUTTER & ANDROID DEVELOPER',
-              style: TextStyle(
+              style: TextStyles.text15Regular.copyWith(
                 color: Colors.white70,
                 fontSize: Responsive.isDesktop(context)
                     ? 15
                     : Responsive.isTablet(context)
                         ? 13
                         : 11,
-                fontWeight: FontWeight.w400,
                 letterSpacing: Responsive.isDesktop(context)
                     ? 6.0
                     : Responsive.isTablet(context)
@@ -142,14 +141,14 @@ class _OutlinedHoverButtonState extends State<OutlinedHoverButton> {
             vertical: Responsive.isDesktop(context) ? 14 : 10,
           ),
           decoration: BoxDecoration(
-            color: _isHovered ? Colors.white : Colors.transparent,
+            color: _isHovered ? AppColors.white : Colors.transparent,
             borderRadius: BorderRadius.circular(30),
-            border: Border.all(color: Colors.white, width: 1.5),
+            border: Border.all(color: AppColors.white, width: 1.5),
           ),
           child: Text(
             widget.text,
             style: TextStyle(
-              color: _isHovered ? const Color(0xFF191923) : Colors.white,
+              color: _isHovered ? const Color(0xFF191923) : AppColors.white,
               fontWeight: FontWeight.bold,
               fontSize: Responsive.isDesktop(context) ? 14 : 12,
               letterSpacing: 1.0,

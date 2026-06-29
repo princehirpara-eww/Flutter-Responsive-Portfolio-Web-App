@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../core/theme/app_colors.dart';
 import '../../res/constants.dart';
 import '../../view model/responsive.dart';
 import '../intro/components/background_wrapper.dart';
@@ -70,7 +71,7 @@ class ResumeView extends StatelessWidget {
                     Text(
                       'MY RESUME',
                       style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                            color: Colors.white,
+                            color: AppColors.white,
                             fontWeight: FontWeight.bold,
                             letterSpacing: 2.5,
                           ),
@@ -79,7 +80,7 @@ class ResumeView extends StatelessWidget {
                     Container(
                       width: 80,
                       height: 3,
-                      color: flutterBlue,
+                      color: AppColors.flutterBlue,
                     ),
                     const SizedBox(height: defaultPadding * 2),
 

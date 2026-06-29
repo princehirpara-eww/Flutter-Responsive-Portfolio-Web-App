@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/core/theme/app_colors.dart';
 import '../../../res/constants.dart';
 
 class TimelineColumn extends StatelessWidget {
@@ -75,7 +76,7 @@ class TimelineColumn extends StatelessWidget {
         Text(
           title,
           style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                color: Colors.white,
+                color: AppColors.white,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 1.5,
               ),
@@ -84,7 +85,7 @@ class TimelineColumn extends StatelessWidget {
         Container(
           width: 40,
           height: 2.5,
-          color: flutterBlue,
+          color: AppColors.flutterBlue,
         ),
       ],
     );
@@ -111,12 +112,12 @@ class TimelineColumn extends StatelessWidget {
                 height: 54,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: darkColor,
+                  color: AppColors.darkSurface,
                   shape: BoxShape.circle,
-                  border: Border.all(color: flutterBlue, width: 2),
+                  border: Border.all(color: AppColors.flutterBlue, width: 2),
                   boxShadow: [
                     BoxShadow(
-                      color: flutterBlue.withOpacity(0.15),
+                      color: AppColors.flutterBlue.withOpacity(0.15),
                       blurRadius: 6,
                       spreadRadius: 1,
                     )
@@ -127,8 +128,8 @@ class TimelineColumn extends StatelessWidget {
                   children: [
                     Text(
                       badgeTextTop,
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color: AppColors.white,
                         fontSize: 9.5,
                         fontWeight: FontWeight.bold,
                         height: 1.1,
@@ -144,8 +145,8 @@ class TimelineColumn extends StatelessWidget {
                     ),
                     Text(
                       badgeTextBottom,
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color: AppColors.white,
                         fontSize: 9.5,
                         fontWeight: FontWeight.bold,
                         height: 1.1,
@@ -174,7 +175,7 @@ class TimelineColumn extends StatelessWidget {
                 Text(
                   company,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Colors.white,
+                        color: AppColors.white,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 1.1,
                       ),
@@ -191,7 +192,7 @@ class TimelineColumn extends StatelessWidget {
                 Text(
                   description,
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        color: bodyTextColor,
+                        color: AppColors.mutedGray,
                         height: 1.5,
                       ),
                 ),

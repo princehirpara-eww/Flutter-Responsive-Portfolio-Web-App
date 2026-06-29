@@ -43,7 +43,7 @@ class TopNavigationBar extends StatelessWidget {
                   Text(
                     '774-555-3021',
                     style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                          color: Colors.white,
+                          color: AppColors.white,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.0,
                         ),

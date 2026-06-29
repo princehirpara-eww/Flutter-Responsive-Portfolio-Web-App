@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_portfolio/res/constants.dart';
 import 'package:flutter_portfolio/view%20model/getx_controllers/projects_controller.dart';
 import 'package:flutter_portfolio/view%20model/responsive.dart';
@@ -71,7 +72,7 @@ class ProjectsView extends StatelessWidget {
                     Text(
                       'MY PORTFOLIO',
                       style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                            color: Colors.white,
+                            color: AppColors.white,
                             fontWeight: FontWeight.bold,
                             letterSpacing: 2.5,
                           ),
@@ -80,7 +81,7 @@ class ProjectsView extends StatelessWidget {
                     Container(
                       width: 80,
                       height: 3,
-                      color: flutterBlue,
+                      color: AppColors.flutterBlue,
                     ),
                     const SizedBox(height: defaultPadding * 2),
 

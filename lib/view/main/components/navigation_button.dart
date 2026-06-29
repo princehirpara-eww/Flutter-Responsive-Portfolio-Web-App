@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/theme/app_colors.dart';
 import '../../../res/constants.dart';
 
 class NavigationTextButton extends StatelessWidget {
@@ -24,7 +25,7 @@ class NavigationTextButton extends StatelessWidget {
         style: Theme.of(context).textTheme.labelMedium!.copyWith(
           fontSize: size.height * 0.019,
               fontWeight: FontWeight.bold,
-              color: isActive ? flutterBlue : Colors.white,
+              color: isActive ? AppColors.flutterBlue : AppColors.white,
             ),
       ),
     );*/
@@ -40,7 +41,7 @@ class NavigationTextButton extends StatelessWidget {
           style: Theme.of(context).textTheme.labelMedium!.copyWith(
             fontSize: size.height * 0.02,
             fontWeight: FontWeight.bold,
-            color: isActive ? flutterBlue : Colors.white,
+            color: isActive ? AppColors.flutterBlue : AppColors.white,
           ),
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/theme/app_colors.dart';
 import '../../../../res/constants.dart';
 
 class DrawerImage extends StatelessWidget {
@@ -15,13 +16,13 @@ class DrawerImage extends StatelessWidget {
           borderRadius: BorderRadius.circular(50),
           gradient: LinearGradient(
             colors: [
-              androidGreen,
-              flutterBlue,
+              AppColors.androidGreen,
+              AppColors.flutterBlue,
             ],
           ),
-          boxShadow: const [
-            BoxShadow(color: androidGreen,blurRadius: 10,offset: Offset(0, 2)),
-            BoxShadow(color: flutterBlue,blurRadius: 10,offset: Offset(0, -2)),
+          boxShadow: [
+            BoxShadow(color: AppColors.androidGreen,blurRadius: 10,offset: Offset(0, 2)),
+            BoxShadow(color: AppColors.flutterBlue,blurRadius: 10,offset: Offset(0, -2)),
           ]
       ),
       child: ClipRRect(

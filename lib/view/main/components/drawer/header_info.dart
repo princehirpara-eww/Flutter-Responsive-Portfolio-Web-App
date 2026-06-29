@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/theme/app_colors.dart';
 import '../../../../res/constants.dart';
 
 class AreaInfoText extends StatelessWidget {
@@ -12,7 +13,7 @@ class AreaInfoText extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title,style: const TextStyle(color: Colors.white),),
+          Text(title,style: const TextStyle(color: AppColors.white),),
           Text(text),
         ],
       ),

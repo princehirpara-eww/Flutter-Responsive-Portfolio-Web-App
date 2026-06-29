@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/view/projects/components/project_info.dart';
 import 'package:get/get.dart';
+import '../../../core/theme/app_colors.dart';
 import '../../../model/project_model.dart';
 import '../../../res/constants.dart';
 import '../../../view model/getx_controllers/projects_controller.dart';
@@ -29,20 +30,17 @@ class ProjectGrid extends StatelessWidget {
                 vertical: defaultPadding, horizontal: defaultPadding),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
-                gradient: const LinearGradient(colors: [
-                  androidGreen,
-                  flutterBlue,
-                ]),
+               color: controller.hovers[index] ? AppColors.black : AppColors.black,
                 boxShadow:  [
                   BoxShadow(
-                    color: androidGreen,
+                    color: AppColors.white,
                     offset: const Offset(-2, 0),
-                    blurRadius: controller.hovers[index] ? 20 : 10,
+                    blurRadius: controller.hovers[index] ? 10 : 5,
                   ),
                   BoxShadow(
-                      color: flutterBlue,
+                      color: AppColors.white,
                       offset: const Offset(2, 0),
-                      blurRadius: controller.hovers[index] ? 20 : 10,),
+                      blurRadius: controller.hovers[index] ? 10 : 5,),
                 ]),
             child: ProjectStack(index: index)
         ));

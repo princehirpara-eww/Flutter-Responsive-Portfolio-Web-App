@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/res/constants.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_portfolio/view/about_us/components/subtitle_text.dart';
+import '../../../core/theme/app_colors.dart';
 import '../../../view model/responsive.dart';
 
 class CombineSubtitleText extends StatelessWidget {
@@ -47,9 +48,9 @@ class CombineSubtitleText extends StatelessWidget {
         )
             : ShaderMask(
           shaderCallback: (bounds) {
-            return const LinearGradient(colors: [
-              androidGreen,
-              flutterBlue,
+            return LinearGradient(colors: [
+              AppColors.androidGreen,
+              AppColors.flutterBlue,
             ]).createShader(bounds);
           },
           child: const Responsive(

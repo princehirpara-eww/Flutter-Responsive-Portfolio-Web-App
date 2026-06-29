@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/core/theme/app_colors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../res/constants.dart';
 
@@ -18,21 +19,21 @@ class SkillsColumn extends StatelessWidget {
           'Flutter',
           0.95,
           FontAwesomeIcons.flutter,
-          flutterBlue,
+          AppColors.flutterBlue,
         ),
         _buildSkillRow(
           context,
           'Dart',
           0.95,
           FontAwesomeIcons.code,
-          flutterBlue,
+          AppColors.flutterBlue,
         ),
         _buildSkillRow(
           context,
           'Kotlin',
           0.90,
           FontAwesomeIcons.android,
-          androidGreen,
+          AppColors.androidGreen,
         ),
         _buildSkillRow(
           context,
@@ -46,14 +47,14 @@ class SkillsColumn extends StatelessWidget {
           'Android SDK',
           0.90,
           FontAwesomeIcons.mobileScreenButton,
-          androidGreen,
+          AppColors.androidGreen,
         ),
         _buildSkillRow(
           context,
           'State Management',
           0.85,
           FontAwesomeIcons.layerGroup,
-          flutterBlue,
+          AppColors.flutterBlue,
         ),
         
         const SizedBox(height: defaultPadding * 2),
@@ -90,7 +91,7 @@ class SkillsColumn extends StatelessWidget {
         Text(
           title,
           style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                color: Colors.white,
+                color: AppColors.white,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 1.5,
               ),
@@ -99,7 +100,7 @@ class SkillsColumn extends StatelessWidget {
         Container(
           width: 40,
           height: 2.5,
-          color: flutterBlue,
+          color: AppColors.flutterBlue,
         ),
       ],
     );
@@ -121,7 +122,7 @@ class SkillsColumn extends StatelessWidget {
             height: 32,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: secondaryColor,
+              color: AppColors.darkSlate,
               borderRadius: BorderRadius.circular(6),
               border: Border.all(color: Colors.white12),
             ),
@@ -137,7 +138,7 @@ class SkillsColumn extends StatelessWidget {
             child: Text(
               skill,
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    color: Colors.white.withOpacity(0.9),
+                    color: AppColors.white.withOpacity(0.9),
                     fontWeight: FontWeight.w600,
                   ),
             ),
@@ -160,14 +161,14 @@ class SkillsColumn extends StatelessWidget {
             child: Text(
               language,
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    color: Colors.white.withOpacity(0.9),
+                    color: AppColors.white.withOpacity(0.9),
                     fontWeight: FontWeight.w600,
                   ),
             ),
           ),
           const SizedBox(width: 10),
           Expanded(
-            child: _CustomSlider(value: value, color: flutterBlue),
+            child: _CustomSlider(value: value, color: AppColors.flutterBlue),
           ),
         ],
       ),
@@ -215,7 +216,7 @@ class _CustomSlider extends StatelessWidget {
             width: 9,
             height: 9,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.white,
               shape: BoxShape.circle,
               border: Border.all(
                 color: color,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/view/intro/components/social_media_coloumn.dart';
+import '../../../core/theme/app_colors.dart';
 import '../../../res/constants.dart';
 class SocialMediaIconList extends StatelessWidget {
   const SocialMediaIconList({super.key});
@@ -15,7 +16,7 @@ class SocialMediaIconList extends StatelessWidget {
           RotatedBox(
             quarterTurns: -3,
             child: Text('Follow Me',style: Theme.of(context).textTheme.titleSmall!.copyWith(
-              color: Colors.white,
+              color: AppColors.white,
               fontWeight: FontWeight.w500,
             ),),
           ),
@@ -24,7 +25,7 @@ class SocialMediaIconList extends StatelessWidget {
             width: 3,
             margin: const EdgeInsets.symmetric(vertical: defaultPadding * 0.5),
             decoration: BoxDecoration(
-                color: Colors.white,
+                color: AppColors.white,
                 borderRadius: BorderRadius.circular(defaultPadding)
             ),
           ),

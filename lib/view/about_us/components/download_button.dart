@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../core/theme/app_colors.dart';
 import '../../../res/constants.dart';
 
 class DownloadButton extends StatefulWidget {
@@ -65,19 +66,19 @@ class _DownloadButtonState extends State<DownloadButton> {
           ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            gradient: const LinearGradient(
-              colors: [androidGreen, flutterBlue],
+            gradient: LinearGradient(
+              colors: [AppColors.androidGreen, AppColors.flutterBlue],
             ),
             boxShadow: [
               BoxShadow(
-                color: androidGreen.withValues(
+                color: AppColors.androidGreen.withValues(
                   alpha: isHovered ? 0.8 : 0.4,
                 ),
                 offset: const Offset(-2, 0),
                 blurRadius: isHovered ? 10 : 5,
               ),
               BoxShadow(
-                color: flutterBlue.withValues(
+                color: AppColors.flutterBlue.withValues(
                   alpha: isHovered ? 0.8 : 0.4,
                 ),
                 offset: const Offset(2, 0),
@@ -91,7 +92,7 @@ class _DownloadButtonState extends State<DownloadButton> {
               Text(
                 'Download CV',
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  color: Colors.white,
+                  color: AppColors.white,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1.2,
                 ),
