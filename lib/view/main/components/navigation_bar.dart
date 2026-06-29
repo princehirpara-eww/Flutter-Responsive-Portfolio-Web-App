@@ -1,9 +1,9 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/view%20model/responsive.dart';
-import 'package:flutter_portfolio/view/intro/components/side_menu_button.dart';
-import '../../../res/constants.dart';
-import 'navigation_button_list.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../../../res/constants.dart';
+import 'navigation_button_list.dart';
 
 class TopNavigationBar extends StatelessWidget {
   final int activeIndex;
@@ -12,50 +12,160 @@ class TopNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
+    final showFullMenu = MediaQuery.sizeOf(context).width > 850;
 
-    return Container(
-      color: Colors.black,
-      padding: EdgeInsets.symmetric(
-        horizontal: size.width * 0.02,
-        vertical: size.height * 0.02,
+    return SafeArea(
+      bottom: false,
+      child: Container(
+        margin: EdgeInsets.symmetric(
+          horizontal: showFullMenu ? 40.0 : 16.0,
+          vertical: 12.0,
+        ),
+        height: 70,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // 1. Logo Badge
+            _buildLogo(),
+
+            // 2. Navigation Capsule Menu (only on Desktop & Tablet)
+            if (showFullMenu)
+              _buildNavCapsule(context)
+            else
+              const SizedBox.shrink(),
+
+            // 3. Let's Talk CTA Button (Desktop/Tablet) or Empty Space (Mobile)
+            if (showFullMenu)
+              _buildLetsTalkButton()
+            else
+              const SizedBox.shrink(),
+          ],
+        ),
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          /*if (Responsive.isLargeMobile(context))
-            MenuButton(onTap: () => Scaffold.of(context).openDrawer())
-          else
-            NavigationButtonList(activeIndex: activeIndex),
-          const Spacer(),
-          MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: GestureDetector(
-              onTap: () => launchUrl(Uri.parse('tel:7745553021')),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(
-                    Icons.phone_android,
-                    color: Colors.white70,
-                    size: 15,
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    '774-555-3021',
-                    style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                          color: AppColors.white,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.0,
-                        ),
-                  ),
-                ],
-              ),
-            ),
-          ),*/
+    );
+  }
 
-          NavigationButtonList(activeIndex: activeIndex),
+  Widget _buildLogo() {
+    return Container(
+      width: 48,
+      height: 48,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: const Color(0xFF1E1E1E).withOpacity(0.8),
+        border: Border.all(
+          color: Colors.white.withOpacity(0.1),
+          width: 1.2,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.3),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
         ],
+      ),
+      child: const Center(
+        child: Text(
+          'PH',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w700,
+            fontSize: 18,
+            letterSpacing: -0.5,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildNavCapsule(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(30),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.06),
+            borderRadius: BorderRadius.circular(30),
+            border: Border.all(
+              color: Colors.white.withOpacity(0.08),
+              width: 1.2,
+            ),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              NavigationButtonList(activeIndex: activeIndex),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLetsTalkButton() {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () => launchUrl(Uri.parse('mailto:prince.eww@gmail.com')),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          decoration: BoxDecoration(
+            color: const Color(0xFF1E1E1E).withOpacity(0.8),
+            borderRadius: BorderRadius.circular(30),
+            border: Border.all(
+              color: Colors.white.withOpacity(0.12),
+              width: 1.2,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.2),
+                blurRadius: 8,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+          child: const Text(
+            "Let's Talk",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+              fontSize: 14,
+              letterSpacing: 0.5,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMobileMenuButton(BuildContext context) {
+    return Container(
+      width: 48,
+      height: 48,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: const Color(0xFF1E1E1E).withOpacity(0.8),
+        border: Border.all(
+          color: Colors.white.withOpacity(0.1),
+          width: 1.2,
+        ),
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(24),
+          onTap: () => Scaffold.of(context).openDrawer(),
+          child: const Icon(
+            Icons.menu_rounded,
+            color: Colors.white,
+            size: 24,
+          ),
+        ),
       ),
     );
   }
 }
+

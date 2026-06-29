@@ -25,23 +25,29 @@ class ProjectGrid extends StatelessWidget {
           crossAxisCount: crossAxisCount, childAspectRatio: ratio),
       itemBuilder: (context, index) {
         return Obx(() => AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
+            duration: const Duration(milliseconds: 250),
             margin: const EdgeInsets.symmetric(
                 vertical: defaultPadding, horizontal: defaultPadding),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-               color: controller.hovers[index] ? AppColors.black : AppColors.black,
-                boxShadow:  [
+              color: controller.hovers[index]
+                  ? Colors.white.withOpacity(0.08)
+                  : Colors.white.withOpacity(0.03),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: controller.hovers[index]
+                    ? Colors.white.withOpacity(0.20)
+                    : Colors.white.withOpacity(0.08),
+                width: 1.2,
+              ),
+              boxShadow: [
+                if (controller.hovers[index])
                   BoxShadow(
-                    color: AppColors.white,
-                    offset: const Offset(-2, 0),
-                    blurRadius: controller.hovers[index] ? 10 : 5,
+                    color: Colors.blueAccent.withOpacity(0.12),
+                    blurRadius: 15,
+                    spreadRadius: 1,
                   ),
-                  BoxShadow(
-                      color: AppColors.white,
-                      offset: const Offset(2, 0),
-                      blurRadius: controller.hovers[index] ? 10 : 5,),
-                ]),
+              ],
+            ),
             child: ProjectStack(index: index)
         ));
       },

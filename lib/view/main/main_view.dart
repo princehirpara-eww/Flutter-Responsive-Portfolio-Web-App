@@ -3,6 +3,9 @@ import 'package:flutter_portfolio/view%20model/controller.dart';
 import 'package:flutter_portfolio/view/main/components/navigation_bar.dart';
 import '../../view model/responsive.dart';
 import 'components/navigation_button_list.dart';
+import 'components/drawer/drawer.dart';
+import 'components/mobile_floating_nav.dart';
+
 class MainView extends StatefulWidget {
   const MainView({super.key, required this.pages});
   final List<Widget> pages;
@@ -40,7 +43,7 @@ class _MainViewState extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // drawer: const CustomDrawer(),
+      drawer: const CustomDrawer(),
       body: Center(
         child: Stack(
           children: [
@@ -58,17 +61,20 @@ class _MainViewState extends State<MainView> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   TopNavigationBar(activeIndex: _currentPage),
-                  // if (Responsive.isLargeMobile(context))
-                  //   Row(
-                  //     children: [
-                  //       const Spacer(),
-                  //       NavigationButtonList(activeIndex: _currentPage),
-                  //       const Spacer(),
-                  //     ],
-                  //   ),
                 ],
               ),
             ),
+            if (MediaQuery.sizeOf(context).width <= 850)
+              MobileFloatingNav(
+                activeIndex: _currentPage,
+                onTabSelect: (index) {
+                  controller.animateToPage(
+                    index,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeIn,
+                  );
+                },
+              ),
           ],
         ),
       ),
