@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../view model/responsive.dart';
+import '../../main/components/entrance_fader.dart';
 
 class IntroBody extends StatelessWidget {
   const IntroBody({super.key});
@@ -23,8 +24,12 @@ class IntroBody extends StatelessWidget {
           children: [
             SizedBox(height: topSpacing),
             // Profile image on top for mobile
-            Center(
-              child: _buildAvatar(size.width * 0.55 > 250 ? 250 : size.width * 0.55),
+            EntranceFader(
+              delay: const Duration(milliseconds: 100),
+              offset: const Offset(0.0, 20.0),
+              child: Center(
+                child: _buildAvatar(size.width * 0.55 > 250 ? 250 : size.width * 0.55),
+              ),
             ),
             const SizedBox(height: 32),
             // Intro text details below
@@ -59,7 +64,11 @@ class IntroBody extends StatelessWidget {
         Expanded(
           flex: 3,
           child: Center(
-            child: _buildAvatar(size.width * 0.28 > 320 ? 320 : size.width * 0.28),
+            child: EntranceFader(
+              delay: const Duration(milliseconds: 400),
+              offset: const Offset(20.0, 0.0),
+              child: _buildAvatar(size.width * 0.28 > 320 ? 320 : size.width * 0.28),
+            ),
           ),
         ),
       ],
@@ -71,79 +80,159 @@ class IntroBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Subtitle
-        Text(
-          'I am Prince Hirpara',
-          style: TextStyle(
-            fontFamily: 'Poppins',
-            color: Colors.white.withOpacity(0.85),
-            fontWeight: FontWeight.w500,
-            fontSize: isMobile ? 16 : 22,
-            letterSpacing: 1.0,
+        EntranceFader(
+          delay: const Duration(milliseconds: 150),
+          child: Text(
+            'I am Prince Hirpara',
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              color: Colors.white.withOpacity(0.85),
+              fontWeight: FontWeight.w500,
+              fontSize: isMobile ? 16 : 22,
+              letterSpacing: 1.0,
+            ),
           ),
         ),
         const SizedBox(height: 12),
         // Main Title
-        Text(
-          'Flutter & Android\nDeveloper',
-          style: TextStyle(
-            fontFamily: 'Poppins',
-            color: Colors.white,
-            fontWeight: FontWeight.w800,
-            fontSize: isMobile ? 32 : 54,
-            height: 1.15,
-            letterSpacing: -0.5,
+        EntranceFader(
+          delay: const Duration(milliseconds: 300),
+          child: Text(
+            'Flutter & Android\nDeveloper',
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              color: Colors.white,
+              fontWeight: FontWeight.w800,
+              fontSize: isMobile ? 32 : 54,
+              height: 1.15,
+              letterSpacing: -0.5,
+            ),
           ),
         ),
         const SizedBox(height: 20),
         // Description
-        Text(
-          'Building premium, high-performance mobile and web applications with Flutter and Android to deliver seamless user experiences.',
-          style: TextStyle(
-            fontFamily: 'Poppins',
-            color: Colors.white.withOpacity(0.65),
-            fontWeight: FontWeight.w400,
-            fontSize: isMobile ? 14 : 16,
-            height: 1.6,
+        EntranceFader(
+          delay: const Duration(milliseconds: 450),
+          child: Text(
+            'Building premium, high-performance mobile and web applications with Flutter and Android to deliver seamless user experiences.',
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              color: Colors.white.withOpacity(0.65),
+              fontWeight: FontWeight.w400,
+              fontSize: isMobile ? 14 : 16,
+              height: 1.6,
+            ),
           ),
         ),
         const SizedBox(height: 36),
         // CV Button
-        const _DownloadCVButton(),
+        EntranceFader(
+          delay: const Duration(milliseconds: 600),
+          child: const _DownloadCVButton(),
+        ),
         const SizedBox(height: 32),
         // Social Media Links
-        const _SocialMediaRowInline(),
+        EntranceFader(
+          delay: const Duration(milliseconds: 750),
+          child: const _SocialMediaRowInline(),
+        ),
       ],
     );
   }
 
   Widget _buildAvatar(double dimension) {
-    return Container(
-      width: dimension,
-      height: dimension,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.white.withOpacity(0.04),
-        border: Border.all(
-          color: Colors.white.withOpacity(0.12),
-          width: 2.0,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.blueAccent.withOpacity(0.18),
-            blurRadius: 40,
-            spreadRadius: 2,
-          ),
-        ],
+    return _AnimatedProfileAvatar(dimension: dimension);
+  }
+}
+
+class _AnimatedProfileAvatar extends StatefulWidget {
+  final double dimension;
+  const _AnimatedProfileAvatar({required this.dimension});
+
+  @override
+  State<_AnimatedProfileAvatar> createState() => _AnimatedProfileAvatarState();
+}
+
+class _AnimatedProfileAvatarState extends State<_AnimatedProfileAvatar>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _floatAnimation;
+  bool _isHovered = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 4),
+    )..repeat(reverse: true);
+
+    _floatAnimation = Tween<double>(begin: -6.0, end: 6.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeInOut,
       ),
-      child: ClipOval(
-        child: Image.asset(
-          'assets/images/avatar_hp.png',
-          fit: BoxFit.cover,
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: AnimatedBuilder(
+        animation: _controller,
+        builder: (context, child) {
+          return Transform.translate(
+            offset: Offset(0.0, _floatAnimation.value),
+            child: AnimatedScale(
+              scale: _isHovered ? 1.05 : 1.0,
+              duration: const Duration(milliseconds: 250),
+              curve: Curves.easeOut,
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 250),
+                width: widget.dimension,
+                height: widget.dimension,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white.withOpacity(0.04),
+                  border: Border.all(
+                    color: _isHovered ? Colors.white.withOpacity(0.24) : Colors.white.withOpacity(0.12),
+                    width: 2.0,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.blueAccent.withOpacity(_isHovered ? 0.32 : 0.18),
+                      blurRadius: _isHovered ? 50 : 40,
+                      spreadRadius: _isHovered ? 4 : 2,
+                    ),
+                  ],
+                ),
+                child: child,
+              ),
+            ),
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(2.0),
+          child: ClipOval(
+            child: Image.asset(
+              'assets/images/avatar_hp.png',
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
       ),
     );
   }
 }
+
 
 class _DownloadCVButton extends StatefulWidget {
   const _DownloadCVButton();

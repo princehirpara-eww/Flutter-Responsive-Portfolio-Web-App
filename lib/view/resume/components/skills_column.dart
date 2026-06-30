@@ -184,55 +184,62 @@ class _CustomSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        // Background track
-        Container(
-          height: 2,
-          decoration: BoxDecoration(
-            color: Colors.white10,
-            borderRadius: BorderRadius.circular(1),
-          ),
-        ),
-        // Active progress line
-        Align(
-          alignment: Alignment.centerLeft,
-          child: FractionallySizedBox(
-            widthFactor: value,
-            child: Container(
+    return TweenAnimationBuilder<double>(
+      duration: const Duration(milliseconds: 1500),
+      curve: Curves.easeOutCubic,
+      tween: Tween<double>(begin: 0.0, end: value),
+      builder: (context, animatedValue, child) {
+        return Stack(
+          alignment: Alignment.center,
+          children: [
+            // Background track
+            Container(
               height: 2,
               decoration: BoxDecoration(
-                color: Colors.white54,
+                color: Colors.white10,
                 borderRadius: BorderRadius.circular(1),
               ),
             ),
-          ),
-        ),
-        // Handle dot at current progress position
-        Align(
-          alignment: Alignment(value * 2 - 1, 0),
-          child: Container(
-            width: 9,
-            height: 9,
-            decoration: BoxDecoration(
-              color: AppColors.white,
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: color,
-                width: 2.5,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: color.withOpacity(0.4),
-                  blurRadius: 4,
-                  spreadRadius: 1,
+            // Active progress line
+            Align(
+              alignment: Alignment.centerLeft,
+              child: FractionallySizedBox(
+                widthFactor: animatedValue,
+                child: Container(
+                  height: 2,
+                  decoration: BoxDecoration(
+                    color: Colors.white54,
+                    borderRadius: BorderRadius.circular(1),
+                  ),
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
-      ],
+            // Handle dot at current progress position
+            Align(
+              alignment: Alignment(animatedValue * 2 - 1, 0),
+              child: Container(
+                width: 9,
+                height: 9,
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: color,
+                    width: 2.5,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: color.withOpacity(0.4),
+                      blurRadius: 4,
+                      spreadRadius: 1,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

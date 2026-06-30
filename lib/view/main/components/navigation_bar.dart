@@ -103,23 +103,48 @@ class TopNavigationBar extends StatelessWidget {
   }
 
   Widget _buildLetsTalkButton() {
+    return const _LetsTalkButton();
+  }
+}
+
+class _LetsTalkButton extends StatefulWidget {
+  const _LetsTalkButton();
+
+  @override
+  State<_LetsTalkButton> createState() => _LetsTalkButtonState();
+}
+
+class _LetsTalkButtonState extends State<_LetsTalkButton> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
       child: GestureDetector(
         onTap: () => launchUrl(Uri.parse('mailto:prince.eww@gmail.com')),
-        child: Container(
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeInOut,
+          transform: Matrix4.identity()..scale(_isHovered ? 1.05 : 1.0),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           decoration: BoxDecoration(
-            color: const Color(0xFF1E1E1E).withOpacity(0.8),
+            color: _isHovered
+                ? Colors.white.withOpacity(0.12)
+                : const Color(0xFF1E1E1E).withOpacity(0.8),
             borderRadius: BorderRadius.circular(30),
             border: Border.all(
-              color: Colors.white.withOpacity(0.12),
+              color: _isHovered ? Colors.white.withOpacity(0.3) : Colors.white.withOpacity(0.12),
               width: 1.2,
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.2),
-                blurRadius: 8,
+                color: _isHovered
+                    ? Colors.white.withOpacity(0.06)
+                    : Colors.black.withOpacity(0.2),
+                blurRadius: _isHovered ? 12 : 8,
                 offset: const Offset(0, 4),
               ),
             ],

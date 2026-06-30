@@ -5,6 +5,7 @@ import 'package:flutter_portfolio/view%20model/controller.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../res/constants.dart';
 import '../../../view model/responsive.dart';
+import '../../main/components/entrance_fader.dart';
 
 class AboutUsBody extends StatelessWidget {
   const AboutUsBody({super.key});
@@ -21,13 +22,25 @@ class AboutUsBody extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: topSpacing),
-            _buildHeader(context),
+            EntranceFader(
+              delay: const Duration(milliseconds: 100),
+              child: _buildHeader(context),
+            ),
             const SizedBox(height: 16),
-            _buildDescription(),
+            EntranceFader(
+              delay: const Duration(milliseconds: 200),
+              child: _buildDescription(),
+            ),
             const SizedBox(height: 32),
-            _buildStatsBanner(isMobile: true),
+            EntranceFader(
+              delay: const Duration(milliseconds: 300),
+              child: _buildStatsBanner(isMobile: true),
+            ),
             const SizedBox(height: 40),
-            _buildApproachSection(context, isMobile: true),
+            EntranceFader(
+              delay: const Duration(milliseconds: 400),
+              child: _buildApproachSection(context, isMobile: true),
+            ),
             const SizedBox(height: 40),
           ],
         ),
@@ -48,13 +61,25 @@ class AboutUsBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(height: topSpacing * 0.8),
-                _buildHeader(context),
+                EntranceFader(
+                  delay: const Duration(milliseconds: 100),
+                  child: _buildHeader(context),
+                ),
                 const SizedBox(height: 16),
-                _buildDescription(),
+                EntranceFader(
+                  delay: const Duration(milliseconds: 200),
+                  child: _buildDescription(),
+                ),
                 const SizedBox(height: 28),
-                _buildStatsBanner(isMobile: false),
+                EntranceFader(
+                  delay: const Duration(milliseconds: 300),
+                  child: _buildStatsBanner(isMobile: false),
+                ),
                 const SizedBox(height: 36),
-                _buildApproachSection(context, isMobile: false),
+                EntranceFader(
+                  delay: const Duration(milliseconds: 400),
+                  child: _buildApproachSection(context, isMobile: false),
+                ),
                 const SizedBox(height: 40),
               ],
             ),
@@ -65,7 +90,11 @@ class AboutUsBody extends StatelessWidget {
         Expanded(
           flex: 3,
           child: Center(
-            child: _buildRightVisualDashboard(size.width * 0.28 > 320 ? 320 : size.width * 0.28),
+            child: EntranceFader(
+              delay: const Duration(milliseconds: 500),
+              offset: const Offset(30.0, 0.0),
+              child: _buildRightVisualDashboard(size.width * 0.28 > 320 ? 320 : size.width * 0.28),
+            ),
           ),
         ),
       ],
@@ -337,11 +366,18 @@ class AboutUsBody extends StatelessWidget {
           const SizedBox(height: 6),
           ClipRRect(
             borderRadius: BorderRadius.circular(4),
-            child: LinearProgressIndicator(
-              value: percentage,
-              backgroundColor: Colors.white10,
-              valueColor: AlwaysStoppedAnimation<Color>(color),
-              minHeight: 4,
+            child: TweenAnimationBuilder<double>(
+              duration: const Duration(milliseconds: 1500),
+              curve: Curves.easeOutCubic,
+              tween: Tween<double>(begin: 0.0, end: percentage),
+              builder: (context, value, child) {
+                return LinearProgressIndicator(
+                  value: value,
+                  backgroundColor: Colors.white10,
+                  valueColor: AlwaysStoppedAnimation<Color>(color),
+                  minHeight: 4,
+                );
+              },
             ),
           ),
         ],
