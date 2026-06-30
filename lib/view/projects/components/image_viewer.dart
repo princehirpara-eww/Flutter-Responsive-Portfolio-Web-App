@@ -1,6 +1,8 @@
 import 'package:photo_view/photo_view.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/theme/app_colors.dart';
+
 class ImageViewer {
   ImageViewer(BuildContext context, String image) {
     showGeneralDialog(
@@ -19,7 +21,7 @@ class ImageViewer {
               child: Scaffold(
                 backgroundColor: Colors.black,
                 body: Container(
-                    color: Colors.white,
+                    color: AppColors.white,
                     child: Center(
                       child: PhotoView(imageProvider: AssetImage(image))
                       ),

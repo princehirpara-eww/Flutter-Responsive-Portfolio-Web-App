@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/core/theme/app_colors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -55,17 +56,21 @@ class _ConnectButtonState extends State<ConnectButton> {
               transform: Matrix4.identity()
                 ..translate(0.0, translateY)
                 ..scale(scale),
-            height: 60,
-            width: 150,
+            // height: 60,
+            // width: 150,
+              padding: EdgeInsetsDirectional.symmetric(
+                vertical: 10,
+                horizontal: 20
+              ),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(defaultPadding),
                 gradient: LinearGradient(colors: [
-                  androidGreen,
-                  flutterBlue,
+                  AppColors.androidGreen,
+                  AppColors.flutterBlue,
                 ]),
               boxShadow:[
                     BoxShadow(
-                        color: androidGreen.withValues(
+                        color: AppColors.androidGreen.withValues(
                           alpha: isHovered ? 0.8 : 0.4,
                         ),
                         offset: Offset(0, -1),
@@ -73,7 +78,7 @@ class _ConnectButtonState extends State<ConnectButton> {
                             ? defaultPadding / 2
                             : defaultPadding / 4),
                     BoxShadow(
-                        color: flutterBlue.withValues(
+                        color: AppColors.flutterBlue.withValues(
                           alpha: isHovered ? 0.8 : 0.4,
                         ),
                         offset: Offset(0, 1),
@@ -89,10 +94,10 @@ class _ConnectButtonState extends State<ConnectButton> {
                 AnimatedRotation(
                     duration: Duration(milliseconds: animationDuration),
                     turns: isHovered ? 0.10 : 0,
-                    child: const FaIcon(FontAwesomeIcons.whatsapp,color: Colors.white,size: 15,)),
-                const SizedBox(width : defaultPadding/4),
+                    child: const FaIcon(FontAwesomeIcons.whatsapp,color: AppColors.white,size: 15,)),
+                const SizedBox(width : 5),
                 Text('Whatsapp',style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                    color: Colors.white,
+                    color: AppColors.white,
                     letterSpacing: 1.2,
                     fontWeight: FontWeight.bold
                 ),),

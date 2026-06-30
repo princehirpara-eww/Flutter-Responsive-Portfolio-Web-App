@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/theme/app_colors.dart';
 import 'knowledge.dart';
 
 class Knowledges extends StatelessWidget {
@@ -13,7 +14,7 @@ class Knowledges extends StatelessWidget {
         Divider(),
         Padding(
           padding: EdgeInsets.symmetric(vertical: 10),
-          child: Text('Knowledge',style: TextStyle(color: Colors.white),),
+          child: Text('Knowledge',style: TextStyle(color: AppColors.white),),
         ),
         KnowledgeText(knowledge: 'Android, Flutter'),
         KnowledgeText(knowledge: 'Java, Kotlin, Dart'),

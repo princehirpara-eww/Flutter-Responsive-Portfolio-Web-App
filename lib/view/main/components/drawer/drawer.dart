@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_portfolio/view/main/components/drawer/contact_icons.dart';
 import 'package:flutter_portfolio/view/main/components/drawer/personal_info.dart';
 import '../../../../res/constants.dart';
@@ -10,13 +11,13 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: primaryColor,
+      backgroundColor: AppColors.white,
       child: SingleChildScrollView(
         child: Column(
           children: [
             const About(),
             Container(
-              color: bgColor,
+              color: AppColors.midnightBlack,
               child: const Padding(
               padding: EdgeInsets.all(defaultPadding/2),
               child: Column(

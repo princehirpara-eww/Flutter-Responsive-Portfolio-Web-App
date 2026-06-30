@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/theme/app_colors.dart';
 import '../../../../res/constants.dart';
 
 class AnimatedLinearProgressIndicator extends StatelessWidget {
@@ -18,7 +19,7 @@ class AnimatedLinearProgressIndicator extends StatelessWidget {
               children: [
                 Image.asset(image!,height: 15,width: 15,fit: BoxFit.cover,),
                 const SizedBox(width: 5,),
-                Text(title,style: const TextStyle(color: Colors.white),),
+                Text(title,style: const TextStyle(color: AppColors.white),),
                 const Spacer(),
                 Text('${(value*100).toInt().toString()}%'),
               ],

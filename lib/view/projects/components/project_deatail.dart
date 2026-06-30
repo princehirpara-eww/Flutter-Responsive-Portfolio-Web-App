@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/view/projects/components/project_link.dart';
 
+import '../../../core/theme/app_colors.dart';
 import '../../../model/project_model.dart';
 import '../../../res/constants.dart';
 import '../../../view model/responsive.dart';
@@ -20,7 +21,7 @@ class ProjectDetail extends StatelessWidget {
               .textTheme
               .headlineSmall!
               .copyWith(
-              color: Colors.white,
+              color: AppColors.white,
               fontWeight: FontWeight.bold),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,

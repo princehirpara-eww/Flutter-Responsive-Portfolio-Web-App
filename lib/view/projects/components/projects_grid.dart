@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/view/projects/components/project_info.dart';
 import 'package:get/get.dart';
+import '../../../core/theme/app_colors.dart';
 import '../../../model/project_model.dart';
 import '../../../res/constants.dart';
 import '../../../view model/getx_controllers/projects_controller.dart';
+import '../../../view model/responsive.dart';
+
 class ProjectGrid extends StatelessWidget {
   final int crossAxisCount;
   final double ratio;
@@ -12,32 +15,39 @@ class ProjectGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      padding: EdgeInsets.symmetric(
+        horizontal: Responsive.isLargeMobile(context) ? 0.0 : 15.0,
+      ),
       itemCount: projectList.length,
-      gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: crossAxisCount, childAspectRatio: ratio),
       itemBuilder: (context, index) {
         return Obx(() => AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
+            duration: const Duration(milliseconds: 250),
             margin: const EdgeInsets.symmetric(
                 vertical: defaultPadding, horizontal: defaultPadding),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                gradient: const LinearGradient(colors: [
-                  androidGreen,
-                  flutterBlue,
-                ]),
-                boxShadow:  [
+              color: controller.hovers[index]
+                  ? Colors.white.withOpacity(0.08)
+                  : Colors.white.withOpacity(0.03),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: controller.hovers[index]
+                    ? Colors.white.withOpacity(0.20)
+                    : Colors.white.withOpacity(0.08),
+                width: 1.2,
+              ),
+              boxShadow: [
+                if (controller.hovers[index])
                   BoxShadow(
-                    color: androidGreen,
-                    offset: const Offset(-2, 0),
-                    blurRadius: controller.hovers[index] ? 20 : 10,
+                    color: Colors.blueAccent.withOpacity(0.12),
+                    blurRadius: 15,
+                    spreadRadius: 1,
                   ),
-                  BoxShadow(
-                      color: flutterBlue,
-                      offset: const Offset(2, 0),
-                      blurRadius: controller.hovers[index] ? 20 : 10,),
-                ]),
+              ],
+            ),
             child: ProjectStack(index: index)
         ));
       },

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/theme/app_colors.dart';
 import '../../../../res/constants.dart';
 import 'header_info.dart';
 
@@ -19,7 +20,7 @@ class PersonalInfo extends StatelessWidget {
         SizedBox(
           height: defaultPadding,
         ),
-        Text('Skills',style: TextStyle(color: Colors.white),),
+        Text('Skills',style: TextStyle(color: AppColors.white),),
         SizedBox(
           height: defaultPadding,
         ),

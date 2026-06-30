@@ -10,9 +10,9 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # Both the version and the builder number may be overridden in flutter
 # build by specifying --build-name and --build-number, respectively.
 # In Android, build-name is used as versionName while build-number used as versionCode.
-# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# Read more about_us Android versioning at https://developer.android.com/studio/publish/versioning
 # In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
-# Read more about iOS versioning at
+# Read more about_us iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
@@ -45,11 +45,13 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: ^2.4.11
+  flutter_gen_runner: ^5.11.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
+  # package. See that file for information about_us deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
 
@@ -62,13 +64,47 @@ flutter:
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
+  generate: true
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/
   #   - images/a_dot_ham.jpeg
+
+  fonts:
+    # Poppins Family
+    - family: Poppins
+      fonts:
+        # Extra Light (200)
+        - asset: assets/fonts/Poppins/Poppins-ExtraLight.ttf
+          weight: 200
+
+        # Light (300)
+        - asset: assets/fonts/Poppins/Poppins-Light.ttf
+          weight: 300
+
+        # Regular (400)
+        - asset: assets/fonts/Poppins/Poppins-Regular.ttf
+          weight: 400
+
+        # Medium (500)
+        - asset: assets/fonts/Poppins/Poppins-Medium.ttf
+          weight: 500
+
+        # Semi Bold (600)
+        - asset: assets/fonts/Poppins/Poppins-SemiBold.ttf
+          weight: 600
+
+        # Bold (700)
+        - asset: assets/fonts/Poppins/Poppins-Bold.ttf
+          weight: 700
+
+        # Extra Bold (800)
+        - asset: assets/fonts/Poppins/Poppins-ExtraBold.ttf
+          weight: 800
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

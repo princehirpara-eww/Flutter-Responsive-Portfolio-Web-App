@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/core/theme/app_colors.dart';
 import '../../../res/constants.dart';
 
 class MenuButton extends StatelessWidget {
@@ -24,22 +25,22 @@ class MenuButton extends StatelessWidget {
                     color: Colors.black,
                     boxShadow: [
                       BoxShadow(
-                          color: androidGreen.withOpacity(.5),
+                          color: AppColors.androidGreen.withOpacity(.5),
                           offset: const Offset(1, 1)),
                       BoxShadow(
-                          color: flutterBlue.withOpacity(.5),
+                          color: AppColors.flutterBlue.withOpacity(.5),
                           offset: const Offset(-1, -1)),
                     ]),
                 child:  Center(
                   child: ShaderMask(
                     shaderCallback: (bounds) {
                       return LinearGradient(
-                              colors: [androidGreen, flutterBlue])
+                              colors: [AppColors.androidGreen, AppColors.flutterBlue])
                           .createShader(bounds);
                     },
                     child: Icon(
                       Icons.menu,
-                      color: Colors.white,
+                      color: AppColors.white,
                       size: defaultPadding * 1.2 * value,
                     ),
                   )

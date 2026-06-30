@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/res/constants.dart';
+import '../../../../core/theme/app_colors.dart';
 import 'drawer_image.dart';
 class About extends StatelessWidget {
   const About({super.key});
@@ -8,7 +9,7 @@ class About extends StatelessWidget {
     return AspectRatio(
       aspectRatio: 1.23,
       child: Container(
-        color:  bgColor,
+        color:  AppColors.midnightBlack,
         child: Column(
           children: [
             const Spacer(flex: 2,),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/theme/app_colors.dart';
 import '../../../res/constants.dart';
 import '../../../view model/responsive.dart';
 
@@ -41,18 +42,18 @@ class AnimatedImageContainerState extends State<AnimatedImageContainer>
             padding: const EdgeInsets.all(defaultPadding / 4),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              gradient: const LinearGradient(colors: [
-                androidGreen,
-                flutterBlue,
+              gradient: LinearGradient(colors: [
+                AppColors.androidGreen,
+                AppColors.flutterBlue,
               ]),
-              boxShadow: const [
+              boxShadow: [
                 BoxShadow(
-                  color: androidGreen,
+                  color: AppColors.androidGreen,
                   offset: Offset(-2, 0),
                   blurRadius: 20,
                 ),
                 BoxShadow(
-                  color: flutterBlue,
+                  color: AppColors.flutterBlue,
                   offset: Offset(2, 0),
                   blurRadius: 20,
                 ),
