@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/view/main/components/glowing_background.dart';
+import 'package:flutter_portfolio/view%20model/controller.dart';
 import '../../core/theme/app_colors.dart';
 import '../../res/constants.dart';
 import '../../view model/responsive.dart';
@@ -23,6 +24,7 @@ class ResumeView extends StatelessWidget {
             horizontal: isMobile ? 20.0 : 60.0,
           ),
           child: SingleChildScrollView(
+            controller: resumeScrollController,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

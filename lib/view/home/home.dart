@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
       const AboutUs(),
       const ResumeView(),
       ProjectsView(),
-      Certifications(),
+      // Certifications(),
     ]);
   }
 }

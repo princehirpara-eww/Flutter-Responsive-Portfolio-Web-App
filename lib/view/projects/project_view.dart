@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_portfolio/res/constants.dart';
 import 'package:flutter_portfolio/view/main/components/glowing_background.dart';
+import 'package:flutter_portfolio/view%20model/controller.dart';
 import 'package:flutter_portfolio/view%20model/getx_controllers/projects_controller.dart';
 import 'package:flutter_portfolio/view%20model/responsive.dart';
 import 'package:get/get.dart';
@@ -24,6 +25,7 @@ class ProjectsView extends StatelessWidget {
             horizontal: isMobile ? 20.0 : 60.0,
           ),
           child: SingleChildScrollView(
+            controller: projectsScrollController,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

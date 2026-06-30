@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/view/intro/components/intro_body.dart'; // We can reuse OutlinedHoverButton or make one
+import 'package:flutter_portfolio/view%20model/controller.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../res/constants.dart';
 import '../../../view model/responsive.dart';
@@ -41,6 +42,7 @@ class AboutUsBody extends StatelessWidget {
         Expanded(
           flex: 5,
           child: SingleChildScrollView(
+            controller: aboutScrollController,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,

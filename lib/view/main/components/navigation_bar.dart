@@ -1,8 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_portfolio/view%20model/responsive.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../../../res/constants.dart';
 import 'navigation_button_list.dart';
 
 class TopNavigationBar extends StatelessWidget {
@@ -11,7 +9,6 @@ class TopNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.sizeOf(context);
     final showFullMenu = MediaQuery.sizeOf(context).width > 850;
 
     return SafeArea(
@@ -135,33 +132,6 @@ class TopNavigationBar extends StatelessWidget {
               fontSize: 14,
               letterSpacing: 0.5,
             ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildMobileMenuButton(BuildContext context) {
-    return Container(
-      width: 48,
-      height: 48,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: const Color(0xFF1E1E1E).withOpacity(0.8),
-        border: Border.all(
-          color: Colors.white.withOpacity(0.1),
-          width: 1.2,
-        ),
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(24),
-          onTap: () => Scaffold.of(context).openDrawer(),
-          child: const Icon(
-            Icons.menu_rounded,
-            color: Colors.white,
-            size: 24,
           ),
         ),
       ),
