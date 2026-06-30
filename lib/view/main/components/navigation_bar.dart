@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/view%20model/controller.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'navigation_button_list.dart';
 
@@ -24,7 +25,7 @@ class TopNavigationBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // 1. Logo Badge
-            _buildLogo(),
+            _LogoBadge(activeIndex: activeIndex),
 
             // 2. Navigation Capsule Menu (only on Desktop & Tablet)
             if (showFullMenu)
@@ -38,39 +39,6 @@ class TopNavigationBar extends StatelessWidget {
             else
               const SizedBox.shrink(),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildLogo() {
-    return Container(
-      width: 48,
-      height: 48,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: const Color(0xFF1E1E1E).withOpacity(0.8),
-        border: Border.all(
-          color: Colors.white.withOpacity(0.1),
-          width: 1.2,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: const Center(
-        child: Text(
-          'PH',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w700,
-            fontSize: 18,
-            letterSpacing: -0.5,
-          ),
         ),
       ),
     );
@@ -104,6 +72,75 @@ class TopNavigationBar extends StatelessWidget {
 
   Widget _buildLetsTalkButton() {
     return const _LetsTalkButton();
+  }
+}
+
+class _LogoBadge extends StatefulWidget {
+  final int activeIndex;
+  const _LogoBadge({required this.activeIndex});
+
+  @override
+  State<_LogoBadge> createState() => _LogoBadgeState();
+}
+
+class _LogoBadgeState extends State<_LogoBadge> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: GestureDetector(
+        onTap: () {
+          if (widget.activeIndex != 0) {
+            controller.animateToPage(
+              0,
+              duration: const Duration(milliseconds: 600),
+              curve: Curves.easeInOut,
+            );
+          }
+        },
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeInOut,
+          transform: Matrix4.identity()..scale(_isHovered ? 1.08 : 1.0),
+          width: 48,
+          height: 48,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: _isHovered
+                ? Colors.white.withOpacity(0.12)
+                : const Color(0xFF1E1E1E).withOpacity(0.8),
+            border: Border.all(
+              color: _isHovered ? Colors.white.withOpacity(0.3) : Colors.white.withOpacity(0.1),
+              width: 1.2,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: _isHovered
+                    ? Colors.white.withOpacity(0.08)
+                    : Colors.black.withOpacity(0.3),
+                blurRadius: _isHovered ? 12 : 10,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+          child: const Center(
+            child: Text(
+              'PH',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+                fontSize: 18,
+                letterSpacing: -0.5,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 
