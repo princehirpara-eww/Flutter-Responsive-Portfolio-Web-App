@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/core/theme/app_colors.dart';
 import 'package:flutter_portfolio/res/constants.dart';
+import 'package:flutter_portfolio/view/main/components/color_drops_touch_overlay.dart';
 import 'package:flutter_portfolio/view/splash/splash_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -24,7 +25,9 @@ class MyApp extends StatelessWidget {
             .copyWith(
         ),
       ),
-
+      builder: (context, child) {
+        return ColorDropsTouchOverlay(child: child!);
+      },
       home: SplashView()
     );
   }
